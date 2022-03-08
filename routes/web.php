@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
-Route::resource("comics", "ComicController");
+Route::get('/', "HomeController@index")->name("home");
+
+// Route::resource("comics", "ComicController");
+Route::get("branches", "BranchController@index")->name("branches.index");
+Route::get("branches/{branch}", "BranchController@show")->name("branches.show");
+Route::get("branches/create", "BranchController@create")->name("branches.create");
