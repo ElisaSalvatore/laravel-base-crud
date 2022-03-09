@@ -14,9 +14,10 @@ class ComicController extends Controller
      */
     public function index()
     {
+        // recuperare dati dal database e passaarli alla view
        $dati = Comic::all();
-
-        return view('comics.index', compact('dati'));
+        // dd($dati);
+        return view("comics.index", compact("dati"));
     }
 
     /**
@@ -40,13 +41,24 @@ class ComicController extends Controller
         $data = $request->all();
 
         $newComic = new Comic();
-        $newComic->title = $data["title"];
-        $newComic->description = $data["description"];
-        $newComic->thumb = $data["thumb"];
-        $newComic->price = $data["price"];
-        $newComic->series = $data["series"];
-        $newComic->sale_date = $data["sale_date"];
-        $newComic->type = $data["type"];
+
+        // FILL
+        // Il fill passa tutti i miei dati come array associativo, me se vogliamo usarlo bisogna creare una variabile che dica a Laravel quali sono i campi a cui vogliamo permettere la modifica.
+        // Creare nel Model una variabile "protected $fillable=[]", creando un array di chiavi che voglio permettere.
+        // Se l'array che riceve contiene centomila chiavi diverse i sono sicuro che solo queste chiavi verranno prese in considerazione e solo queste verranno compilate.
+        
+        // Quindi con il fill avvviene un riempimento delle colonne in modo automatico passando solo l'array dei data:
+        $newComic->fill($data);
+
+        // Riempimento delle colonne manuale, assegnando un valore alla volta.
+        
+        // $newComic->title = $data["title"];
+        // $newComic->description = $data["description"];
+        // $newComic->thumb = $data["thumb"];
+        // $newComic->price = $data["price"];
+        // $newComic->series = $data["series"];
+        // $newComic->sale_date = $data["sale_date"];
+        // $newComic->type = $data["type"];
 
         $newComic->save();
 
@@ -56,18 +68,18 @@ class ComicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int int
      * @return \Illuminate\Http\Response
      */
-    public function show(Comic $comic)
+    public function show($id)
     {
-        return view("comics.show", compact("comic"));
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int int
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -79,7 +91,7 @@ class ComicController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  int
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -90,7 +102,7 @@ class ComicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int int
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

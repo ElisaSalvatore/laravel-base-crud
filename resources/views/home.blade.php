@@ -1,7 +1,8 @@
 @extends('layouts.default')
 
-@section('pageTitle', 'Home')
+@section('pageTitle', 'Homepage')
 
-@section('content')
-<h1>Benvenuto sul sito Comics!</h1>
+@section("content")
+<h1>HOMEPAGE</h1>
+
 @endsection
