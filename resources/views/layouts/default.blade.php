@@ -17,7 +17,7 @@
   <main class="d-flex">
 
     <div class="container py-5">
-      @yield('content')
+      @include('content')
     </div>
 
   </main>

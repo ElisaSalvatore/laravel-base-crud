@@ -2,11 +2,11 @@
 
 @section('pageTitle', 'Fumetti')
 
-@section("content")
+@section('content')
     <h1>FUMETTI</h1>
 
     <div>
-        <a href="{{ route('comics.create') }}class="btn btn-primary">Aggiungi</a>
+        {{-- <a href="{{ route('comics.create') }}class="btn btn-primary">Aggiungi</a> --}}
     </div>
 
     <table class="table">
@@ -23,21 +23,22 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($dati as key=> $comic)
-            <tr>
+        @foreach ($comics as $comic)
+        <tr>
             <td>{{ $comic->title }}</td>
             <td>{{ $comic->description }}</td>
-            <td><img src="{{ $comic->thumb }}" alt="copertina fumetto"></td>
+            {{-- <td><img src="{{ $comic->thumb }}" alt="copertina fumetto"></td> --}}
             <td>{{ $comic->price }}</td>
             <td>{{ $comic->series }}</td>
             <td>{{ $comic->sale_date }}</td>
             <td>{{ $comic->type }}</td>
 
-            <td>
-                {{-- <a href="comics/{{$comic->id}}" class="btn btn-link">Dettagli</a> --}}
+            {{-- <td>
+                {{-- <a href="comics/{{$comic->id}}" class="btn btn-link">Dettagli</a> 
                 <a href="{{ route("comics.show", $comic->id) }}" class="btn btn-link">Dettagli</a>
-            </td>
-            </tr>
+            </td> --}}
+        
+        </tr>
         @endforeach
         </tbody>
     </table>

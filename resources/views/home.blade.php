@@ -3,6 +3,5 @@
 @section('pageTitle', 'Homepage')
 
 @section("content")
-<h1>HOMEPAGE</h1>
-
+@include('comics.index')
 @endsection
