@@ -13,11 +13,15 @@
 </head>
 
 <body>
+  <header class="@yield('headerClass')">
+    {{-- Navbar uguale per tutte le pagine --}}
+    @include("partials.navbar")
+  </header>
   
   <main class="d-flex">
 
     <div class="container py-5">
-      @include('content')
+      @yield('content')
     </div>
 
   </main>
